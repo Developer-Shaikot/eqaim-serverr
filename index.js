@@ -40,12 +40,7 @@ client.connect(err => {
 
 
 
-  app.get('/addPost/:id', (req, res) => {
-    blogsCollection.find({ _id: ObjectId(req.params.id) })
-      .toArray((error, items) => {
-        res.send(items)
-      })
-  })
+
 
 
   app.post('/addPosts', (req, res) => {
@@ -60,7 +55,12 @@ client.connect(err => {
 
 
  
-
+  app.get('/addPost/:id', (req, res) => {
+    blogsCollection.find({ _id: ObjectId(req.params.id) })
+      .toArray((error, items) => {
+        res.send(items)
+      })
+  })
 
   app.get('/addComments', (req, res) => {
     commentCollection.find()
