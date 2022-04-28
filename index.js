@@ -42,7 +42,6 @@ client.connect(err => {
 
 
 
-
   app.post('/addPosts', (req, res) => {
     const newBlogs = req.body;
     console.log('adding new blogs', newBlogs)
@@ -54,7 +53,6 @@ client.connect(err => {
   })
 
 
- 
   app.get('/addPost/:id', (req, res) => {
     blogsCollection.find({ _id: ObjectId(req.params.id) })
       .toArray((error, items) => {
@@ -62,12 +60,20 @@ client.connect(err => {
       })
   })
 
+
   app.get('/addComments', (req, res) => {
     commentCollection.find()
       .toArray((error, value) => {
         res.send(value)
       })
   })
+
+
+
+ 
+ 
+
+  
 
   app.post('/addComments', (req, res) => {
     const newComments = req.body;
