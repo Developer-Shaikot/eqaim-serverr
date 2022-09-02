@@ -27,7 +27,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
   console.log('connection error', err);
   const blogsCollection = client.db("Post").collection("post");
-  const commentCollection = client.db("Post").collection("comment");
+
   // perform actions on the collection object
  
 
@@ -57,31 +57,6 @@ client.connect(err => {
     blogsCollection.find({ _id: ObjectId(req.params.id) })
       .toArray((error, items) => {
         res.send(items)
-      })
-  })
-
-
-  app.get('/addComments', (req, res) => {
-    commentCollection.find()
-      .toArray((error, value) => {
-        res.send(value)
-      })
-  })
-
-
-
- 
- 
-
-  
-
-  app.post('/addComments', (req, res) => {
-    const newComments = req.body;
-    console.log('adding new comments', newComments)
-    commentCollection.insertOne(newComments)
-      .then(result => {
-        console.log('inserted count', newComments)
-        res.send(result.insertedCount > 0)
       })
   })
  
